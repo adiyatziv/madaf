@@ -275,8 +275,8 @@ body[data-dark="1"] .tabbar button[aria-current="page"] .ic { background: rgba(2
 .bk-credit a { color: inherit; }
 .bk-deco { position: absolute; pointer-events: none; z-index: 3; }
 
-/* ---- the grand enchanted library ---- */
-.bk-grand {
+/* ---- the grand library bookcase (shared by every photo) ---- */
+.bk-page, .bk-rio, .bk-dublin, .bk-baltimore, .bk-escorial {
   --gold: linear-gradient(180deg, #FFF1BE 0%, #EBC66C 38%, #B8862E 72%, #F2D27C 100%);
   --bk-bg: radial-gradient(90% 34% at 50% 12%, rgba(255, 214, 140, .30), transparent 70%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Cg fill='%23E9C46A' opacity='.045'%3E%3Cpath d='M45 6C58 24 58 34 45 45 32 34 32 24 45 6ZM45 84C58 66 58 56 45 45 32 56 32 66 45 84ZM6 45C24 32 34 32 45 45 34 58 24 58 6 45ZM84 45C66 32 56 32 45 45 56 58 66 58 84 45Z'/%3E%3Ccircle cx='45' cy='45' r='3'/%3E%3Ccircle cx='0' cy='0' r='4'/%3E%3Ccircle cx='90' cy='0' r='4'/%3E%3Ccircle cx='0' cy='90' r='4'/%3E%3Ccircle cx='90' cy='90' r='4'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 90px 90px, linear-gradient(180deg, #3A2113 0%, #2A170C 45%, #1C0F07 100%);
   --bk-ink: #FBEFD6; --bk-ink-2: #E5CB9E; --bk-line: rgba(233, 196, 106, .4); --bk-chip: rgba(36, 18, 8, .6); --bk-chip-on: rgba(233, 196, 106, .22);
@@ -288,12 +288,29 @@ body[data-dark="1"] .tabbar button[aria-current="page"] .ic { background: rgba(2
   --bk-plank: linear-gradient(180deg, #F2D27C 0, #B8862E 2px, #8A5A34 3px, #6B4226 38%, #3E230E 100%); --bk-plank-shadow: 0 14px 18px -4px rgba(0, 0, 0, .7);
   --bk-book-shadow: 3px 5px 12px rgba(0, 0, 0, .6);
 }
-.bk-grand .bk-btn { border-color: rgba(233, 196, 106, .45); }
-.bk-grand .bk-btn.solid, .bk-grand .bk-tab[aria-selected="true"] { background: var(--gold); color: #2A170C; box-shadow: 0 4px 16px rgba(233, 196, 106, .35), inset 0 1px 0 rgba(255, 255, 255, .6); }
-.bk-grand .bk-tabs { border-color: rgba(233, 196, 106, .45); }
+.bk-page .bk-btn { border-color: rgba(233, 196, 106, .45); }
+.bk-page .bk-btn.solid, .bk-page .bk-tab[aria-selected="true"] { background: var(--gold); color: #2A170C; box-shadow: 0 4px 16px rgba(233, 196, 106, .35), inset 0 1px 0 rgba(255, 255, 255, .6); }
+.bk-page .bk-tabs { border-color: rgba(233, 196, 106, .45); }
 .bk-hero { position: relative; display: grid; justify-items: center; margin: 4px calc(var(--gutter) * -1) 0; padding: 0 var(--gutter); }
 .bk-top { position: absolute; z-index: 6; inset: 0 var(--gutter) auto; display: flex; justify-content: space-between; }
 .bk-gwin { display: none; }
+.bk-photo { position: relative; margin: calc(-16px - var(--safe-t)) calc(var(--gutter) * -1) 0; height: clamp(300px, 54vh, 470px); overflow: hidden; }
+.bk-photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bk-photo::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .45) 0, transparent 22%, transparent 48%, var(--tone) 100%); }
+.bk-photo .bk-top { top: calc(14px + var(--safe-t)); z-index: 3; }
+.bk-photo-text { position: absolute; z-index: 2; left: 0; right: 0; bottom: 14px; text-align: center; padding: 0 var(--gutter); }
+.bk-photo-text .bk-title { margin: 0; }
+.bk-photo-text .bk-sub { margin: 4px 0 0; color: #F1E2C4; text-shadow: 0 2px 8px rgba(0, 0, 0, .8); }
+.bk-backdrop { position: fixed; inset: -60px; z-index: -2; background-size: cover; background-position: center; filter: blur(34px) brightness(.32) saturate(1.1); }
+.lib-pick { display: flex; justify-content: center; gap: 14px; margin: 16px 0 0; overflow-x: auto; scrollbar-width: none; padding: 2px; }
+.lib-pick::-webkit-scrollbar { display: none; }
+.lib-opt { flex: none; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 0; border: 0; background: none; color: #E8D6B4; font-size: 12px; }
+.lib-opt img { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px rgba(233, 196, 106, .35); }
+.lib-opt[aria-checked="true"] { color: #FFE7A6; font-weight: 700; }
+.lib-opt[aria-checked="true"] img { box-shadow: 0 0 0 3px #E9C46A, 0 0 16px rgba(233, 196, 106, .55); }
+.photo-credit { margin: 8px 0 0; text-align: center; font-size: 11px; color: #BFA987; }
+.photo-credit a { color: inherit; }
 .lib-scene { display: block; width: calc(100% + 2 * var(--gutter)); margin: -6px calc(var(--gutter) * -1) 0; height: clamp(230px, 42vh, 340px); }
 .bk-hero .bk-title { position: relative; margin: 10px 0 0; }
 .spines { display: flex; align-items: flex-end; justify-content: center; gap: 2px; height: 100%; align-self: end; }
@@ -314,8 +331,8 @@ body[data-dark="1"] .tabbar button[aria-current="page"] .ic { background: rgba(2
 .bk-rule { width: 120px; height: 1px; margin: 10px auto 0; background: linear-gradient(90deg, transparent, #C9A45A, transparent); }
 .bk-banner h1 { margin: 0; font-family: var(--f-book); font-weight: 900; font-size: clamp(32px, 9vw, 50px); line-height: 1.05; color: #4A2A10; text-shadow: 0 1px 0 rgba(255, 255, 255, .7); }
 .bk-flourish { display: block; width: 190px; height: 22px; margin: 10px auto 0; }
-.bk-grand .bk-sub { text-align: center; font-style: italic; letter-spacing: .01em; }
-.bk-grand .bk-case { margin: 92px 6px 0; padding: 14px 28px 22px; }
+.bk-page .bk-sub { text-align: center; font-style: italic; letter-spacing: .01em; }
+.bk-page .bk-case { margin: 92px 6px 0; padding: 14px 28px 22px; }
 .bk-crown { position: absolute; z-index: 3; left: -26px; right: -26px; top: -72px; width: calc(100% + 52px); height: 74px; pointer-events: none; }
 .bk-crest { position: absolute; z-index: 4; left: 50%; top: -128px; width: 104px; margin-left: -52px; pointer-events: none; filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .6)); }
 .pilaster { position: absolute; z-index: 3; top: 0; bottom: -4px; width: 24px; pointer-events: none;
@@ -325,16 +342,16 @@ body[data-dark="1"] .tabbar button[aria-current="page"] .ic { background: rgba(2
 .pilaster::before, .pilaster::after { content: ''; position: absolute; left: -6px; right: -6px; background: var(--gold); border-radius: 3px; box-shadow: 0 3px 6px rgba(0, 0, 0, .5); }
 .pilaster::before { top: 0; height: 16px; }
 .pilaster::after { bottom: 0; height: 12px; }
-.bk-grand .bk-label {
+.bk-page .bk-label {
   position: relative; margin: 22px 4px 2px; padding: 5px 18px; border-radius: 2px; color: #2E1A08; font-size: 16px; letter-spacing: .04em;
   background: linear-gradient(180deg, #E2C27A, #B48A3E 60%, #CFAB62);
   box-shadow: 0 4px 10px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 245, 210, .6), inset 0 0 0 1px rgba(90, 55, 15, .5);
 }
-.bk-grand .bk-label::before, .bk-grand .bk-label::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #F6E3B0, #6E4A16); flex: none; }
+.bk-page .bk-label::before, .bk-page .bk-label::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #F6E3B0, #6E4A16); flex: none; }
 .bk-label .candle { width: 12px; height: 26px; margin-inline-end: 2px; overflow: visible; }
-.bk-grand .bk-hit:hover { transform: translateY(-4px); }
-.bk-grand .bk-hit:hover .cv { box-shadow: 0 0 0 1px rgba(233, 196, 106, .7), 4px 8px 16px rgba(0, 0, 0, .6); }
-.bk-grand .bk-row { margin-bottom: 34px; }
+.bk-page .bk-hit:hover { transform: translateY(-4px); }
+.bk-page .bk-hit:hover .cv { box-shadow: 0 0 0 1px rgba(233, 196, 106, .7), 4px 8px 16px rgba(0, 0, 0, .6); }
+.bk-page .bk-row { margin-bottom: 34px; }
 .bk-ivy { position: absolute; z-index: 5; top: -64px; width: 54px; height: auto; pointer-events: none; transform-origin: 50% 0; }
 .bk-ivy.l { inset-inline-start: -34px; }
 .bk-ivy.r { inset-inline-end: -34px; }
@@ -780,9 +797,13 @@ const FORM = {
   game:   { creatorLabel: 'מפתח/ת', chipKey: 'platform', chipLabel: 'פלטפורמה', defaultChip: 'ps5', chips: [['ps5', 'PS5'], ['ps4', 'PS4'], ['pc', 'PC'], ['switch', 'Switch'], ['xbox', 'Xbox']] },
 };
 
+// Photos from Wikimedia Commons, free licenses (CC BY-SA) — credit is shown under the picture as required.
 const BOOK_THEMES = [
-  { key: 'grand', label: 'הספרייה', dark: true, fx: 'none', color: '#2A170C' },
-];
+  { key: 'rio', label: 'ריו דה ז׳נרו', place: 'Real Gabinete Português de Leitura', photo: 'art/lib-rio.jpg', pos: 'center 30%', tone: '#1B110A', artist: 'Mayumi Ishikawa', lic: 'CC BY-SA 2.0', src: 'https://commons.wikimedia.org/wiki/File:%E3%83%AA%E3%82%AA%E3%81%AE%E5%B9%BB%E6%83%B3%E5%9B%B3%E6%9B%B8%E9%A4%A8_Real_Gabinete_Portugues_de_Leitura_(8735773218).jpg' },
+  { key: 'dublin', label: 'דבלין', place: 'The Long Room, Trinity College', photo: 'art/lib-dublin.jpg', pos: 'center 40%', tone: '#1E140C', artist: 'Diliff', lic: 'CC BY-SA 4.0', src: 'https://commons.wikimedia.org/wiki/File:Long_Room_Interior,_Trinity_College_Dublin,_Ireland_-_Diliff.jpg' },
+  { key: 'baltimore', label: 'בולטימור', place: 'George Peabody Library', photo: 'art/lib-baltimore.jpg', pos: 'center 45%', tone: '#211C16', artist: 'Matthew Petroff', lic: 'CC BY-SA 3.0', src: 'https://commons.wikimedia.org/wiki/File:George-peabody-library.jpg' },
+  { key: 'escorial', label: 'אל אסקוריאל', place: 'Real Biblioteca de El Escorial', photo: 'art/lib-escorial.jpg', pos: 'center 35%', tone: '#22160C', artist: 'Diego Delso', lic: 'CC BY-SA 4.0', src: 'https://commons.wikimedia.org/wiki/File:Real_Monasterio_de_San_Lorenzo_de_El_Escorial,_Madrid,_Espa%C3%B1a,_2025-12-30,_DD_16-18_HDR.jpg' },
+].map(t => ({ ...t, dark: true, fx: 'none', color: t.tone }));
 
 /* ======================================================
    Seed lists — Adi's own lists, in the order she wrote them.
@@ -2435,22 +2456,25 @@ function renderBooks(status) {
           ${rows(g.items)}`).join('')}
       </div>`;
 
-  return `<section class="bk-page bk-${theme.key}" data-kind="book">
+  return `<section class="bk-page bk-${theme.key}" data-kind="book" style="--tone:${theme.tone}">
     <div class="bk-bg" aria-hidden="true"></div>
-    <canvas class="fx-canvas" aria-hidden="true"></canvas>
+    <div class="bk-backdrop" aria-hidden="true" style="background-image:url('${theme.photo}')"></div>
     <header class="bk-head">
-      <div class="bk-hero">
+      <div class="bk-photo">
+        <img src="${theme.photo}" alt="${esc(theme.place)}" style="object-position:${theme.pos}">
         <div class="bk-top">
           ${homeBtn('bk-btn home-btn')}
           <button class="bk-btn solid" data-action="add" data-status="${status}">${IC.plus} ספר</button>
         </div>
-        ${LIBRARY_SCENE}
-        <h1 class="bk-title">הספרים שלי</h1>
-        <div class="bk-rule" aria-hidden="true"></div>
-        <div class="bk-hero-text">
+        <div class="bk-photo-text">
+          <h1 class="bk-title">הספרים שלי</h1>
           <p class="bk-sub">${counts.done} קראתי, ${counts.want} מחכים על המדף${counts.inProgress ? `, ${counts.inProgress} בקריאה` : ''}</p>
         </div>
       </div>
+      <div class="lib-pick" role="radiogroup" aria-label="איזו ספרייה">
+        ${BOOK_THEMES.map(t => `<button class="lib-opt" role="radio" aria-checked="${t.key === theme.key}" data-action="book-theme" data-theme="${t.key}"><img src="${t.photo}" alt="" loading="lazy">${t.label}</button>`).join('')}
+      </div>
+      <p class="photo-credit">${esc(theme.place)} · צילום: <a href="${theme.src}" target="_blank" rel="noopener">${esc(theme.artist)}</a>, ${theme.lic}, ויקישיתוף</p>
       <div class="bk-tabs" role="tablist" aria-label="מצב">${tabsHTML(kind, status, counts, 'bk-tab')}</div>
       ${items.length ? `<div class="bk-tools">${sortSelect(kind, 'bk-select')}<span class="grow"></span>${toolButtons(kind, status, counts, unrated, 'bk-btn', 'solid')}</div>` : ''}
     </header>
@@ -3503,7 +3527,7 @@ function wheelSVG(pool) {
     <path d="M150 360L130 446H270L250 360Z" fill="url(#wh-stand)"/><rect x="96" y="440" width="208" height="22" rx="11" fill="#3A0A12"/>
     <circle cx="${C}" cy="${CY}" r="${R + 24}" fill="url(#wh-metal)"/>
     <circle cx="${C}" cy="${CY}" r="${R + 6}" fill="#2B1F3A"/>
-    <g class="wh-rot" style="transform-origin:${C}px ${CY}px">${s}${imgs}</g>
+    <g class="wh-rot" data-c="${C} ${CY}" style="transform-box:view-box;transform-origin:${C}px ${CY}px">${s}${imgs}</g>
     <g>${bulbs}</g>
     <circle cx="${C}" cy="${CY}" r="30" fill="url(#wh-metal)" stroke="#5D6270" stroke-width="2"/>
     <circle cx="${C}" cy="${CY}" r="21" fill="url(#wh-gold)"/>
@@ -3636,7 +3660,9 @@ async function spinWheel() {
   const dur = reducedMotion() ? 0 : 5.2;
   let lastSlice = -1;
   if (window.gsap && dur) {
+    // spin around the true centre of the wheel (not the corner of its slices)
     await Promise.race([new Promise(r => gsap.to(rot, {
+      svgOrigin: rot.dataset.c,
       rotation: target, duration: dur, ease: 'power4.out', onComplete: r,
       onUpdate() {
         // the pointer flicks each time a slice edge passes under it
@@ -3646,7 +3672,7 @@ async function spinWheel() {
       },
     })), sleep(dur * 1000 + 500)]);
   } else rot.style.transform = `rotate(${target}deg)`;
-  if (window.gsap) gsap.set(rot, { rotation: target });
+  if (window.gsap) gsap.set(rot, { rotation: target, svgOrigin: rot.dataset.c });
   clearInterval(chase); stage.classList.remove('spinning');
   if (tick) clearInterval(tick);
   if (ticker && n > 24) ticker.textContent = chosen.title;

@@ -1,6 +1,6 @@
 // Offline support: the app and its covers come from the cache first;
 // fonts and libraries are refreshed in the background; search APIs always go to the network.
-const VERSION = 'madaf-v10';
+const VERSION = 'madaf-v11';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
