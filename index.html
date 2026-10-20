@@ -451,7 +451,7 @@ body[data-dark="1"] .tabbar button[aria-current="page"] .ic { background: rgba(2
 /* books: a masterwork illustration as the backdrop */
 .sh-book { --ps-accent: #F0D58C; --ps-glow: rgba(240, 213, 140, .4); --ps-text-2: #D9C9A6; --ps-glass: rgba(255, 240, 210, .08); --ps-line: rgba(255, 235, 200, .2);
   --sym-tri: #FF8FA3; --sym-sq: #F0D58C; --sym-ci: #B7A6F0; --sym-x: #F0D58C; }
-.sh-book .ps-bg { background: var(--tone, #120C08); }
+.sh-book .ps-bg { background: radial-gradient(900px 500px at 50% -10%, rgba(255, 200, 130, .16), transparent 60%), linear-gradient(170deg, #1C120B, #0E0906 60%, #140D08); }
 .sh-art { position: absolute; z-index: -1; inset: 0 0 auto 0; height: 620px; background-size: cover; background-position: var(--art-pos, center 30%);
   -webkit-mask-image: linear-gradient(#000 30%, transparent 96%); mask-image: linear-gradient(#000 30%, transparent 96%); }
 .sh-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .04) 28%, rgba(0, 0, 0, .45) 78%); }
@@ -469,6 +469,45 @@ body[data-dark="1"] .tabbar button[aria-current="page"] .ic { background: rgba(2
 .art-opt[aria-checked="true"] span.th { box-shadow: 0 0 0 2px #F0D58C, 0 8px 24px rgba(240, 213, 140, .35); }
 .art-credit { margin: 8px 0 0; font-size: 11px; color: var(--ps-text-2); }
 .art-credit a { color: inherit; }
+
+/* ============ themed hero scenes ============ */
+.sh-movie .ps-hero, .sh-series .ps-hero, .sh-book .ps-hero { display: block; min-height: 0; padding: 18px 0 4px; }
+.scene-in { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: end; }
+.scene-in .ps-hero-art { width: clamp(92px, 26vw, 170px); }
+.scene-in .ps-hero-title { font-size: clamp(22px, 5.6vw, 40px); }
+/* cinema: a big curved screen, the projector behind you, rows of seats in front */
+.cine-room { position: relative; padding-bottom: 54px; }
+.cine-beam { position: absolute; z-index: 0; left: 50%; bottom: 10px; width: 140%; height: 120%; transform: translateX(-50%); pointer-events: none;
+  background: conic-gradient(from -18deg at 50% 100%, transparent 0deg, rgba(255, 236, 200, .10) 8deg, rgba(255, 236, 200, .16) 18deg, rgba(255, 236, 200, .10) 28deg, transparent 36deg); filter: blur(6px); }
+.cine-screen { position: relative; z-index: 1; overflow: hidden; border-radius: 6px / 28px; aspect-ratio: 16 / 9; background: #0E0A0A;
+  box-shadow: 0 0 0 1px rgba(255, 240, 220, .12), 0 0 90px rgba(255, 228, 190, .22), 0 34px 70px rgba(0, 0, 0, .7); transform: perspective(1000px) rotateX(5deg); transform-origin: 50% 100%; }
+.cine-screen .scr-bg { position: absolute; inset: -24px; background-size: cover; background-position: center 25%; filter: blur(16px) saturate(1.15) brightness(.62); }
+.cine-screen .scene-in { position: absolute; inset: 0; padding: 14px 16px; background: linear-gradient(180deg, transparent 25%, rgba(8, 4, 4, .78)); }
+.cine-screen .ps-hero-art { width: clamp(70px, 20vw, 140px); box-shadow: 0 12px 30px rgba(0, 0, 0, .65); }
+.cine-screen .ps-hero-note { margin-bottom: 8px; }
+.cine-seats { position: absolute; z-index: 2; left: -6%; right: -6%; bottom: 0; height: 76px; pointer-events: none; }
+.cine-wall { position: absolute; z-index: -1; top: -30px; bottom: 30px; width: 18%; pointer-events: none; background: repeating-linear-gradient(90deg, rgba(110, 14, 28, .55) 0 10px, rgba(70, 8, 18, .55) 10px 20px); -webkit-mask-image: linear-gradient(transparent, #000 25%, #000 70%, transparent); mask-image: linear-gradient(transparent, #000 25%, #000 70%, transparent); }
+.cine-wall.l { left: calc(var(--gutter) * -1); } .cine-wall.r { right: calc(var(--gutter) * -1); }
+/* TV: a slim set on the living-room wall, glowing in the show's colours */
+.tv-room { position: relative; padding: 10px 0 0; }
+.tv-glow { position: absolute; z-index: 0; inset: 4% 8% 18%; background-size: cover; background-position: center; filter: blur(46px) saturate(1.6); opacity: .55; border-radius: 30px; }
+.tv-set { position: relative; z-index: 1; margin: 0 auto; max-width: 680px; padding: 7px; border-radius: 14px; background: linear-gradient(180deg, #1C1C20, #0B0B0D); box-shadow: 0 0 0 1px #2C2C33, 0 26px 50px rgba(0, 0, 0, .7); }
+.tv-screen { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border-radius: 8px; background: #000; }
+.tv-screen .scr-bg { position: absolute; inset: -20px; background-size: cover; background-position: center 25%; filter: blur(14px) brightness(.55) saturate(1.2); }
+.tv-screen .scene-in { position: absolute; inset: 0; padding: 14px 16px; background: linear-gradient(90deg, rgba(0, 0, 0, .05), rgba(0, 0, 0, .55)), linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, .7)); }
+.tv-screen::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(118deg, rgba(255, 255, 255, .09), transparent 38%); }
+.tv-screen .ps-hero-art { width: clamp(70px, 20vw, 140px); box-shadow: 0 12px 30px rgba(0, 0, 0, .6); }
+.tv-led { position: absolute; bottom: 2px; left: 50%; width: 4px; height: 2px; margin-left: -2px; border-radius: 2px; background: #6EE7D2; box-shadow: 0 0 6px #6EE7D2; }
+.tv-stand { position: relative; z-index: 1; width: 22%; height: 26px; margin: 0 auto; background: linear-gradient(90deg, transparent 46%, #26262C 46% 54%, transparent 54%); }
+.tv-console { position: relative; z-index: 1; height: 16px; margin: -4px 4% 0; border-radius: 4px; background: linear-gradient(180deg, #2A2A31, #17171B); box-shadow: 0 12px 24px rgba(0, 0, 0, .5); }
+/* library: a wall of books in warm lamplight, the chosen one in the spotlight */
+.lib-room { position: relative; overflow: hidden; border-radius: 18px; box-shadow: 0 0 0 1px rgba(255, 235, 200, .1), 0 24px 50px rgba(0, 0, 0, .55); }
+.lib-wall { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lib-room::before { content: ''; position: absolute; z-index: 1; inset: 0; pointer-events: none;
+  background: radial-gradient(55% 75% at 72% 62%, rgba(255, 210, 140, .30), transparent 70%), radial-gradient(130% 95% at 50% 40%, transparent 35%, rgba(8, 5, 3, .86) 100%), linear-gradient(180deg, rgba(10, 6, 3, .35), rgba(10, 6, 3, .1) 30%, rgba(10, 6, 3, .8)); }
+.lib-room .scene-in { position: relative; z-index: 2; padding: 34px 18px 22px; min-height: 250px; }
+.lib-room .ps-hero-art { box-shadow: 0 2px 0 rgba(255, 230, 190, .2), 0 22px 30px rgba(0, 0, 0, .75); border-radius: 3px 8px 8px 3px; }
+.lib-ledge { position: absolute; z-index: 1; left: 0; right: 0; bottom: 14px; height: 10px; background: linear-gradient(180deg, #4A2E1A, #24160C); box-shadow: 0 -1px 0 rgba(255, 220, 170, .18), 0 8px 16px rgba(0, 0, 0, .6); }
 
 /* ============ sheet (add / edit) ============ */
 .sheet {
@@ -1754,7 +1793,7 @@ async function mergeNewerFromDisk() {
   state.rev = disk.rev;
   return true;
 }
-async function save() {
+async function save(opts = {}) {
   if (!store.db) { toast('השמירה לא זמינה בדפדפן הזה. השינוי יימחק בסגירה'); return false; }
   try {
     if (!state.replaced) await mergeNewerFromDisk();
@@ -1766,6 +1805,7 @@ async function save() {
   tabChannel?.postMessage({ rev: state.rev });
   dailySnapshot();
   fileSync.schedule();
+  if (!opts.fromCloud) cloud.schedule();
   return true;
 }
 
@@ -2543,7 +2583,7 @@ const SHOW = {
   game:   { cls: '', title: 'משחקים', fx: 'ps', empty: 'אין כאן משחקים עדיין.', dropped: 'עוד לא עזבת אף משחק באמצע.', credit: 'תמונות: <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>' },
   movie:  { cls: 'sh-movie', eyebrow: "ADDIE'S CINEMA", title: 'סרטים', fx: 'sunlit', empty: 'אין כאן סרטים עדיין.', dropped: 'לא עזבת אף סרט באמצע.', credit: 'פוסטרים: <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>' },
   series: { cls: 'sh-series', eyebrow: 'ADDIE TV', title: 'סדרות', fx: null, empty: 'אין כאן סדרות עדיין.', dropped: 'לא עזבת אף סדרה באמצע.', credit: 'פוסטרים: <a href="https://www.tvmaze.com" target="_blank" rel="noopener">TVmaze</a>' },
-  book:   { cls: 'sh-book', eyebrow: 'LIBRARY', title: 'הספרים שלי', fx: 'motes', empty: 'המדף הזה עוד ריק.', dropped: 'לא עזבת אף ספר באמצע.', credit: 'כריכות: <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>' },
+  book:   { cls: 'sh-book', eyebrow: 'LIBRARY', title: 'הספרים שלי', fx: null, empty: 'המדף הזה עוד ריק.', dropped: 'לא עזבת אף ספר באמצע.', credit: 'כריכות: <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>' },
 };
 // Public-domain illustrations (Wikimedia Commons) for the books page.
 const BOOK_ART = [
@@ -2566,7 +2606,7 @@ function renderShowcase(kind, status) {
   const focus = ordered.find(i => i.id === focusOf(kind)) || ordered[0];
   ui.focus[kind] = focus?.id;
   const showSym = sortOf(kind) === 'title' && status === 'done';
-  const art = kind === 'book' ? bookArt() : null;
+  const art = null;
 
   const tile = it => {
     const t = tierOf(kind, it.tier);
@@ -2608,8 +2648,8 @@ function heroHTML(it) {
   const t = tierOf(kind, it.tier);
   const quick = it.status === 'want' || it.status === 'inProgress';
   const sub = [it.year, it.creator].filter(Boolean).join(' · ');
-  return `<div class="ps-hero">
-    ${coverBox(it, 'ps-hero-art')}
+  const src = coverSrc(it);
+  const inner = `${coverBox(it, 'ps-hero-art')}
     <div class="ps-hero-text">
       <span class="ps-chip">${t ? `<span class="sym t-${t.key}" aria-hidden="true">${t.icon}</span>${t.label}` : `<span class="sym t-none" aria-hidden="true">●</span>${statusLabel(kind, it.status)}`}</span>
       <h2 class="ps-hero-title"><bdi>${esc(it.title)}</bdi></h2>
@@ -2619,9 +2659,54 @@ function heroHTML(it) {
         ${quick ? `<button class="ps-btn primary" data-action="quick-done" data-id="${esc(it.id)}">✓ ${k.done}</button>` : ''}
         <button class="ps-btn ${quick ? '' : 'primary'}" data-action="edit" data-id="${esc(it.id)}">${kind === 'game' ? 'פרטים ועריכה' : 'פרטים'}</button>
       </div>
-    </div>
-  </div>`;
+    </div>`;
+  const bg = src ? `style="background-image:url('${esc(src)}')"` : '';
+  if (kind === 'movie') return `<div class="ps-hero"><div class="cine-room">
+      <span class="cine-wall l" aria-hidden="true"></span><span class="cine-wall r" aria-hidden="true"></span>
+      <div class="cine-beam" aria-hidden="true"></div>
+      <div class="cine-screen"><div class="scr-bg" ${bg}></div><div class="scene-in">${inner}</div></div>
+      ${SEATS_SVG}
+    </div></div>`;
+  if (kind === 'series') return `<div class="ps-hero"><div class="tv-room">
+      <div class="tv-glow" aria-hidden="true" ${bg}></div>
+      <div class="tv-set"><div class="tv-screen"><div class="scr-bg" ${bg}></div><div class="scene-in">${inner}</div></div><span class="tv-led" aria-hidden="true"></span></div>
+      <div class="tv-stand" aria-hidden="true"></div><div class="tv-console" aria-hidden="true"></div>
+    </div></div>`;
+  if (kind === 'book') return `<div class="ps-hero"><div class="lib-room">${LIB_WALL}<div class="lib-ledge" aria-hidden="true"></div><div class="scene-in">${inner}</div></div></div>`;
+  return `<div class="ps-hero">${inner}</div>`;
 }
+// rows of theatre seats seen from behind, in silhouette
+const SEATS_SVG = (() => {
+  let s = '';
+  [[0, 15, '#120708'], [1, 13, '#1A0A0C']].forEach(([row, n, fill]) => {
+    const w = 440 / n, y = 30 + row * 26, off = row % 2 ? w / 2 : 0;
+    for (let i = -1; i <= n; i++) { const x = i * w + off; s += `<path d="M${(x + 3).toFixed(1)} ${y + 30}V${y + 10}Q${(x + 3).toFixed(1)} ${y} ${(x + w / 2).toFixed(1)} ${y}Q${(x + w - 3).toFixed(1)} ${y} ${(x + w - 3).toFixed(1)} ${y + 10}V${y + 30}Z" fill="${fill}" stroke="rgba(160,30,45,.35)" stroke-width="1"/>`; }
+  });
+  return `<svg class="cine-seats" viewBox="0 0 440 86" preserveAspectRatio="none" aria-hidden="true">${s}</svg>`;
+})();
+// a dim wall of real-looking spines: shaded, gilded bands, shelves
+const LIB_WALL = (() => {
+  const rnd = seeded(91);
+  const cols = ['#5E1F2B', '#1E3B48', '#2F4A30', '#4A3424', '#3B2E52', '#6B4A24', '#7A2E2E', '#24323F', '#5A5236', '#43231C'];
+  let s = '';
+  const rows = 5, W = 400, H = 300, rowH = H / rows;
+  for (let r = 0; r < rows; r++) {
+    const base = (r + 1) * rowH - 6;
+    let x = 0;
+    while (x < W) {
+      const w = 7 + rnd() * 9, hh = rowH * (.64 + rnd() * .28), c = cols[Math.floor(rnd() * cols.length)];
+      const lean = rnd() > .965;
+      s += `<g${lean ? ` transform="rotate(-7 ${(x + w).toFixed(1)} ${base})"` : ''}><rect x="${x.toFixed(1)}" y="${(base - hh).toFixed(1)}" width="${w.toFixed(1)}" height="${hh.toFixed(1)}" fill="${c}"/><rect x="${x.toFixed(1)}" y="${(base - hh).toFixed(1)}" width="${w.toFixed(1)}" height="${hh.toFixed(1)}" fill="url(#lw-shade)"/>`;
+      if (rnd() > .35) { const by = base - hh * (.12 + rnd() * .08); s += `<rect x="${x.toFixed(1)}" y="${by.toFixed(1)}" width="${w.toFixed(1)}" height="1.4" fill="#C9A45A" opacity=".75"/><rect x="${x.toFixed(1)}" y="${(by + 3).toFixed(1)}" width="${w.toFixed(1)}" height=".8" fill="#C9A45A" opacity=".55"/>`; }
+      if (rnd() > .5) s += `<rect x="${(x + w * .3).toFixed(1)}" y="${(base - hh * .55).toFixed(1)}" width="${(w * .4).toFixed(1)}" height="${(hh * .22).toFixed(1)}" fill="#E6D2A8" opacity=".14" rx="1"/>`;
+      s += '</g>';
+      x += w + .6;
+      if (rnd() > .93) x += 6 + rnd() * 10;
+    }
+    s += `<rect x="0" y="${base}" width="${W}" height="6" fill="#2B1A0F"/><rect x="0" y="${base}" width="${W}" height=".8" fill="#E9C99A" opacity=".18"/>`;
+  }
+  return `<svg class="lib-wall" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="lw-shade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset=".35" stop-color="#fff" stop-opacity=".10"/><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient></defs><rect width="400" height="300" fill="#1A100A"/>${s}</svg>`;
+})();
 function focusItem(id) {
   const it = findItem(id);
   if (it) (ui.focus ||= {})[it.kind] = id;
@@ -2630,10 +2715,12 @@ function focusItem(id) {
   $$('.ps-tile').forEach(t => t.setAttribute('aria-current', t.dataset.id === id));
   hero.outerHTML = heroHTML(it);
   const src = coverSrc(it);
+  $('.scr-bg, .tv-glow').forEach(el => { el.style.backgroundImage = src ? `url("${src.replace(/"/g, '%22')}")` : 'none'; });
   if ($('.ps-hero-bg')) $('.ps-hero-bg').style.backgroundImage = src ? `url("${src.replace(/"/g, '%22')}")` : 'none';
   window.scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' });
   if (window.gsap && !reducedMotion()) {
     gsap.fromTo('.ps-hero-art', { opacity: 0, scale: .85, rotateY: -25 }, { opacity: 1, scale: 1, rotateY: 0, duration: .55, ease: 'power3.out' });
+    gsap.fromTo('.cine-screen .scr-bg, .tv-screen .scr-bg', { opacity: 0 }, { opacity: 1, duration: .6, ease: 'power2.out' });
     gsap.fromTo('.ps-hero-text > *', { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: .45, stagger: .06, ease: 'power3.out' });
   }
 }
@@ -3257,10 +3344,11 @@ function openDetail(it) {
     if (b.dataset.pg === 's' && +b.dataset.d > 0) p.e = 0;
     $('#pg-s', sheet).textContent = p.s; $('#pg-e', sheet).textContent = p.e;
     if (it.status === 'want' && (p.e > 0 || p.s > 1)) { it.status = 'inProgress'; it.rank = nextRank(); }
+    it.updatedAt = Date.now();
     await save();
   });
   sheet.querySelectorAll('[data-fmt]').forEach(b => b.onclick = async () => {
-    it.format = b.dataset.fmt;
+    it.format = b.dataset.fmt; it.updatedAt = Date.now();
     sheet.querySelectorAll('[data-fmt]').forEach(x => x.setAttribute('aria-pressed', x === b));
     await save();
   });
@@ -3303,7 +3391,7 @@ function openBulkSheet(kind, status = 'done') {
       const title = (m ? m[1] : raw).trim(), creator = m ? m[2].trim() : '';
       if (have.has(norm(title))) { dup++; continue; }
       have.add(norm(title));
-      fresh.push({ id: uid(), kind, title, creator, status: st, tier: null, note: '', needsCover: true, addedAt: Date.now(), ...(FORM[kind].chipKey ? { [FORM[kind].chipKey]: FORM[kind].defaultChip } : {}) });
+      fresh.push({ id: uid(), kind, title, creator, status: st, tier: null, note: '', needsCover: true, addedAt: Date.now(), updatedAt: Date.now(), ...(FORM[kind].chipKey ? { [FORM[kind].chipKey]: FORM[kind].defaultChip } : {}) });
     }
     // Ranks follow her order: the swipe deck goes top-down, shelves show the last line first.
     let r = nextRank();
@@ -3362,7 +3450,7 @@ function previewItem(kind, r) {
 }
 async function addFromPreview(it, status) {
   if (state.items.some(i => i.kind === it.kind && norm(i.title) === norm(it.title)) && !confirm(`"${it.title}" כבר נמצא ברשימה. להוסיף שוב?`)) return;
-  const fresh = { ...it, id: uid(), status, tier: null, rank: nextRank(), addedAt: Date.now(), ...(FORM[it.kind].chipKey ? { [FORM[it.kind].chipKey]: FORM[it.kind].defaultChip } : {}) };
+  const fresh = { ...it, id: uid(), status, tier: null, rank: nextRank(), addedAt: Date.now(), updatedAt: Date.now(), ...(FORM[it.kind].chipKey ? { [FORM[it.kind].chipKey]: FORM[it.kind].defaultChip } : {}) };
   delete fresh.preview;
   await keepCopy(fresh);
   state.items = [...state.items, fresh];
@@ -3494,7 +3582,7 @@ function openSwipe(kind, ids) {
     if (!h) return;
     const it = findItem(h.id);
     if (it.tier) tally[it.tier]--;
-    it.tier = h.tier; it.rank = h.rank;
+    it.tier = h.tier; it.rank = h.rank; it.updatedAt = Date.now();
     pos = h.pos;
     await save();
     paint();
@@ -3804,12 +3892,172 @@ wheelDlg.addEventListener('close', () => { wheelDlg.innerHTML = ''; ui.wheelRot 
    Backup
    ====================================================== */
 function downloadBackup() {
-  const data = { app: 'madaf', version: DB_VERSION, exportedAt: new Date().toISOString(), settings: state.settings, items: state.items };
+  const { sync, ...settings } = state.settings;
+  const data = { app: 'madaf', version: DB_VERSION, exportedAt: new Date().toISOString(), settings, items: state.items };
   const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
   const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `madaf-backup-${new Date().toISOString().slice(0, 10)}.json` });
   document.body.append(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
+/* ======================================================
+   Cloud sync — one copy of the library for the computer and the phone.
+   Stored as a secret gist on Adi's GitHub account. The access key lives only
+   on her devices (never in the code). Every change is stamped (updatedAt),
+   so merging keeps the newest version of each item and never drops one.
+   ====================================================== */
+const GIST_FILE = 'madaf-library.json';
+const cloud = {
+  timer: null, busy: false, lastSync: 0, error: '',
+  get on() { return !!(state.settings.sync?.token && state.settings.sync?.gistId); },
+  headers() { return { Authorization: `Bearer ${state.settings.sync.token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' }; },
+  // what goes to the cloud: no device-only copies of images that can be fetched again
+  payload() {
+    const items = state.items.map(i => {
+      if (i.coverData && i.coverSource) { const { coverData, ...r } = i; return { ...r, coverUrl: i.coverSource }; }
+      return i;
+    });
+    const { sync, lastSnap, ...settings } = state.settings;
+    return JSON.stringify({ app: 'madaf', version: DB_VERSION, savedAt: Date.now(), settings, deleted: state.deleted || [], items });
+  },
+  async findGist(token) {
+    for (let page = 1; page <= 5; page++) {
+      const r = await fetch(`https://api.github.com/gists?per_page=100&page=${page}`, { headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' } });
+      if (!r.ok) throw new Error(r.status === 401 ? 'המפתח לא תקין' : 'GitHub לא ענה (' + r.status + ')');
+      const list = await r.json();
+      const g = list.find(x => x.files?.[GIST_FILE]);
+      if (g) return g.id;
+      if (list.length < 100) return null;
+    }
+    return null;
+  },
+  async read() {
+    const r = await fetch(`https://api.github.com/gists/${state.settings.sync.gistId}`, { headers: this.headers(), cache: 'no-store' });
+    if (!r.ok) throw new Error('GitHub לא ענה (' + r.status + ')');
+    const f = (await r.json()).files?.[GIST_FILE];
+    if (!f) return null;
+    const text = f.truncated ? await (await fetch(f.raw_url, { cache: 'no-store' })).text() : f.content;
+    return JSON.parse(text);
+  },
+  async write() {
+    const r = await fetch(`https://api.github.com/gists/${state.settings.sync.gistId}`, { method: 'PATCH', headers: this.headers(), body: JSON.stringify({ files: { [GIST_FILE]: { content: this.payload() } } }) });
+    if (!r.ok) throw new Error('השמירה בענן נכשלה (' + r.status + ')');
+  },
+  // newest version of each item wins; deletions travel too
+  merge(remote) {
+    if (!remote?.items) return false;
+    let changed = false;
+    const local = new Map(state.items.map(i => [i.id, i]));
+    const gone = new Set([...(state.deleted || []), ...(remote.deleted || [])]);
+    for (const r of remote.items) {
+      if (gone.has(r.id)) continue;
+      const l = local.get(r.id);
+      if (!l) { state.items.push(r); changed = true; continue; }
+      if ((r.updatedAt || 0) > (l.updatedAt || 0)) {
+        const keepImg = l.coverData && (r.coverUrl === l.coverSource || (!r.coverUrl && !r.coverId && !r.coverData));
+        Object.keys(l).forEach(k => delete l[k]);
+        Object.assign(l, r, keepImg ? { coverData: local.get(r.id)?.coverData } : {});
+        changed = true;
+      }
+    }
+    const before = state.items.length;
+    state.items = state.items.filter(i => !gone.has(i.id));
+    if (state.items.length !== before) changed = true;
+    state.deleted = [...gone].slice(-1000);
+    return changed;
+  },
+  async pull() {
+    if (!this.on || this.busy || !navigator.onLine) return;
+    this.busy = true;
+    try {
+      const remote = await this.read();
+      if (this.merge(remote)) { await save({ fromCloud: true }); if (!sheet.open && !swipeDlg.open && !wheelDlg.open) route(); }
+      this.lastSync = Date.now(); this.error = '';
+    } catch (e) { this.error = e.message; } finally { this.busy = false; }
+  },
+  schedule() {
+    if (!this.on) return;
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => this.push(), 1500);
+  },
+  async push() {
+    if (!this.on || !navigator.onLine) return;
+    if (this.busy) return this.schedule();
+    this.busy = true;
+    try {
+      // fold in anything another device saved first, then upload the merged library
+      const remote = await this.read().catch(() => null);
+      if (this.merge(remote)) await save({ fromCloud: true });
+      await this.write();
+      this.lastSync = Date.now(); this.error = '';
+    } catch (e) { this.error = e.message; toast('הסנכרון לענן נכשל. ננסה שוב בעוד רגע'); setTimeout(() => this.schedule(), 20000); }
+    finally { this.busy = false; }
+  },
+  // first time on a device: find (or create) the library in the cloud
+  async connect(token, mode) {
+    token = token.trim();
+    const existing = await this.findGist(token);
+    state.settings.sync = { token, gistId: existing };
+    if (!existing) {
+      const r = await fetch('https://api.github.com/gists', { method: 'POST', headers: this.headers(), body: JSON.stringify({ description: 'המדף של עדי (סנכרון)', public: false, files: { [GIST_FILE]: { content: this.payload() } } }) });
+      if (!r.ok) throw new Error('לא הצלחתי ליצור את המקום בענן (' + r.status + ')');
+      state.settings.sync.gistId = (await r.json()).id;
+      await save({ fromCloud: true });
+      return 'created';
+    }
+    if (mode === 'upload') {
+      // this device has the real library: it wins, but nothing the cloud has is dropped
+      state.items.forEach(i => { i.updatedAt = Math.max(i.updatedAt || 0, Date.now()); });
+      const remote = await this.read().catch(() => null);
+      this.merge(remote);
+      await save({ fromCloud: true });
+      await this.write();
+      return 'uploaded';
+    }
+    // joining: take the cloud library as it is
+    const remote = await this.read();
+    if (remote?.items) {
+      await snapshot(state, 'לפני חיבור לסנכרון');
+      state.items = remote.items; state.deleted = remote.deleted || [];
+      state.settings = { ...state.settings, ...(remote.settings || {}), sync: state.settings.sync };
+      state.replaced = true;
+    }
+    await save({ fromCloud: true });
+    return 'downloaded';
+  },
+};
+const TOKEN_LINK = 'https://github.com/settings/tokens/new?scopes=gist&description=madaf-sync';
+function openSyncSheet() {
+  const on = cloud.on;
+  openSheet(null, 'סנכרון בין המכשירים', on ? `
+    <p class="ok" style="color:#0E8A6A;font-weight:700;margin:0 0 8px">✓ הסנכרון פעיל במכשיר הזה.</p>
+    <p style="margin:0 0 8px">כל שינוי נשמר בענן תוך שנייה-שתיים, ומתעדכן בכל המכשירים המחוברים.</p>
+    ${cloud.error ? `<p class="err">${esc(cloud.error)}</p>` : cloud.lastSync ? `<p class="dt-muted">סונכרן לאחרונה: ${new Date(cloud.lastSync).toLocaleTimeString('he-IL')}</p>` : ''}`
+  : `
+    <p style="margin:0 0 12px">ככה יש רשימה אחת לטלפון ולמחשב. עושים את זה פעם אחת בכל מכשיר:</p>
+    <ol style="margin:0 0 14px;padding-inline-start:20px;line-height:1.8">
+      <li><a href="${TOKEN_LINK}" target="_blank" rel="noopener">לחצי כאן</a>, גללי למטה ולחצי <b>Generate token</b>, ואז העתיקי את המפתח שמתחיל ב-ghp_.</li>
+      <li>הדביקי אותו כאן:</li>
+    </ol>
+    <div class="field"><label class="sr-only" for="f-token">מפתח</label><input class="inp" id="f-token" dir="ltr" autocomplete="off" placeholder="ghp_…"></div>
+    <p class="dt-muted" style="margin:0">המפתח נשמר רק במכשיר הזה ומאפשר רק שמירת הרשימה ב-GitHub שלך.</p>`,
+  on ? `<button type="button" class="save-btn" data-sync-now>לסנכרן עכשיו</button><span class="grow"></span><button type="button" class="del-btn" data-sync-off>ניתוק</button>`
+     : `<button type="button" class="save-btn" data-sync-up>המידע כאן הוא העדכני</button><button type="button" class="plain-btn" data-sync-down>לקבל את המידע מהענן</button>`);
+  const run = async mode => {
+    const t = $('#f-token', sheet)?.value || '';
+    if (!/^(ghp_|github_pat_|gho_)\w+/.test(t.trim())) { toast('צריך להדביק את המפתח מ-GitHub'); return; }
+    sheet.querySelectorAll('.sheet-foot button').forEach(b => { b.disabled = true; });
+    try {
+      const res = await cloud.connect(t, mode);
+      closeSheet(); route();
+      toast(res === 'downloaded' ? 'המידע מהענן נטען. מעכשיו הכל מסונכרן' : 'הרשימה נשמרה בענן. מעכשיו הכל מסונכרן');
+    } catch (e) { toast(e.message || 'החיבור נכשל'); delete state.settings.sync; sheet.querySelectorAll('.sheet-foot button').forEach(b => { b.disabled = false; }); }
+  };
+  sheet.querySelector('[data-sync-up]')?.addEventListener('click', () => run('upload'));
+  sheet.querySelector('[data-sync-down]')?.addEventListener('click', () => run('download'));
+  sheet.querySelector('[data-sync-now]')?.addEventListener('click', async () => { await cloud.push(); await cloud.pull(); closeSheet(); toast(cloud.error || 'מסונכרן'); });
+  sheet.querySelector('[data-sync-off]')?.addEventListener('click', async () => { if (!confirm('לנתק את המכשיר הזה מהסנכרון? הרשימה תישאר כאן.')) return; delete state.settings.sync; await save(); closeSheet(); route(); });
+}
+
 /* ---- the "how is my library kept safe" card on the home screen ---- */
 function safetyHTML() {
   let fileLine;
@@ -3820,8 +4068,9 @@ function safetyHTML() {
   const place = location.protocol === 'file:' ? 'בקובץ index.html שבתיקייה, בדפדפן הזה' : `בכתובת ${location.host}${location.pathname.replace(/index\.html$/, '')}, בדפדפן הזה`;
   return `<section class="safety">
     <h2 class="sec-title">השמירה שלי</h2>
-    <p><b>הנתונים שלך שמורים ${esc(place)}.</b> כל כתובת וכל מכשיר שומרים עותק נפרד. להעברה: "גיבוי לקובץ" כאן, ו"שחזור מגיבוי" במקום השני.</p>
-    ${fileLine}
+    ${cloud.on
+      ? `<p class="ok">✓ מסונכרן בענן: אותה רשימה בכל המכשירים המחוברים.</p><button class="ghost-btn" data-action="sync">הגדרות סנכרון</button>`
+      : `<p><b>כרגע הרשימה שמורה רק ${esc(place)}.</b> כדי שתהיה אותה רשימה בטלפון ובמחשב, מחברים סנכרון (פעם אחת בכל מכשיר).</p><button class="ghost-btn strong" data-action="sync">חיבור סנכרון</button>`}
     <div class="home-foot">
       <button class="ghost-btn" data-action="export">גיבוי לקובץ</button>
       <button class="ghost-btn" data-action="import">שחזור מגיבוי</button>
@@ -3860,7 +4109,7 @@ function importBackup() {
     if (!confirm(`בגיבוי: ${n('book')} ספרים, ${n('series')} סדרות, ${n('game')} משחקים, ${n('movie')} סרטים.\nמה שיש עכשיו יוחלף, ולפני כן יירד גיבוי שלו. להמשיך?`)) return;
     downloadBackup();
     const before = state;
-    state = migrate({ ...data, settings: data.settings || state.settings });
+    state = migrate({ ...data, settings: { ...(data.settings || state.settings), sync: state.settings.sync } });
     state.replaced = true; // a restore replaces everything on purpose
     if (!(await save())) { state = before; return; }
     route();
@@ -3962,6 +4211,7 @@ document.addEventListener('click', async e => {
   if (a === 'file-connect') fileSync.connect();
   if (a === 'file-resume') fileSync.resume();
   if (a === 'versions') openVersions();
+  if (a === 'sync') openSyncSheet();
 });
 document.addEventListener('change', e => {
   if (e.target.dataset.action === 'sort') { ui.sort[e.target.dataset.kind] = e.target.value; route(); $('#sort-' + e.target.dataset.kind)?.focus(); }
@@ -3979,7 +4229,9 @@ async function pullFromOtherWindow() {
   if (disk?.items && (disk.rev || 0) > (state.rev || 0)) { state = disk; route(); }
 }
 tabChannel?.addEventListener('message', pullFromOtherWindow);
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') pullFromOtherWindow(); });
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { pullFromOtherWindow(); cloud.pull(); } });
+window.addEventListener('online', () => cloud.pull());
+setInterval(() => { if (document.visibilityState === 'visible') cloud.pull(); }, 60000);
 
 async function init() {
   try {
@@ -3998,6 +4250,7 @@ async function init() {
   navigator.storage?.persist?.().catch(() => {});
   route();
   wheelState.test = wheelSelfTest();
+  cloud.pull();
   setTimeout(backgroundCovers, 1500);
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
 }
