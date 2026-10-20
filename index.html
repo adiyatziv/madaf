@@ -14,7 +14,7 @@
 <title>המדף של עדי</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Heebo:wght@400;500;700;800&family=Frank+Ruhl+Libre:wght@500;700;900&family=Exo+2:wght@600;800&family=VT323&family=Bellefair&family=Limelight&family=Oswald:wght@500;700&family=Righteous&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Heebo:wght@400;500;700;800;900&family=Exo+2:wght@600;800&display=swap" rel="stylesheet">
 <style>
 /* ============ tokens ============ */
 :root {
@@ -41,7 +41,7 @@
 
   --f-head: "Fredoka", "Heebo", system-ui, sans-serif;
   --f-body: "Heebo", system-ui, sans-serif;
-  --f-book: "Frank Ruhl Libre", "Heebo", serif;
+  --f-book: "Heebo", system-ui, sans-serif;
 }
 [data-kind="movie"]  { --k: var(--movie);  --k-2: var(--movie-2);  --k-soft: var(--movie-soft); }
 [data-kind="series"] { --k: var(--series); --k-2: var(--series-2); --k-soft: var(--series-soft); }
@@ -423,6 +423,53 @@ body[data-dark="1"] .tabbar button[aria-current="page"] .ic { background: rgba(2
 .ps-credit { margin-top: 30px; text-align: center; font-size: 12px; color: var(--ps-text-2); font-family: var(--f-body); }
 .ps-credit a { color: inherit; }
 
+/* ============ showcase themes (same layout as games) ============ */
+.ps { --tile-ar: 3 / 4; --hero-ar: 3 / 4; --hero-font: "Exo 2", var(--f-body); }
+.ps-tile { aspect-ratio: var(--tile-ar); }
+.ps-hero-art { aspect-ratio: var(--hero-ar); }
+.ps-hero-title { font-family: var(--hero-font); }
+.ps-eyebrow { display: block; font-size: 12px; font-weight: 700; letter-spacing: .32em; color: var(--ps-accent, #fff); opacity: .9; margin-bottom: 2px; direction: ltr; text-align: right; }
+.ps-top h1 small { display: block; }
+.sh-movie, .sh-series, .sh-book { --tile-ar: 2 / 3; --hero-ar: 2 / 3; --hero-font: var(--f-body); font-family: var(--f-body); }
+.sh-movie .ps-hero-title, .sh-series .ps-hero-title, .sh-book .ps-hero-title { font-weight: 900; letter-spacing: -.01em; }
+/* movies: a warm projector beam in a dark theatre */
+.sh-movie { --ps-accent: #F2C14E; --ps-glow: rgba(242, 179, 61, .45); --ps-text-2: #D8BFA0; --ps-glass: rgba(255, 230, 190, .07); --ps-line: rgba(255, 220, 170, .18);
+  --sym-tri: #FF6B81; --sym-sq: #F2C14E; --sym-ci: #A99BFF; --sym-x: #F2C14E; }
+.sh-movie .ps-bg { background: conic-gradient(from 180deg at 50% -8%, transparent 162deg, rgba(255, 214, 150, .16) 174deg, rgba(255, 230, 190, .24) 180deg, rgba(255, 214, 150, .16) 186deg, transparent 198deg),
+  radial-gradient(900px 520px at 50% -12%, rgba(255, 170, 90, .22), transparent 62%), radial-gradient(800px 500px at 100% 100%, rgba(150, 20, 40, .35), transparent 60%), linear-gradient(170deg, #1A0B0E, #0B0607 60%, #140608); }
+.sh-movie .ps-btn.primary { background: #F2C14E; border-color: #F2C14E; color: #2A0E10; }
+.sh-movie .ps-tile:hover, .sh-movie .ps-tile[aria-current="true"] { box-shadow: 0 0 0 3px #F2C14E, 0 14px 40px var(--ps-glow); }
+.sh-movie .ps-tab[aria-selected="true"]::after { background: #F2C14E; box-shadow: 0 0 12px #F2C14E; }
+.sh-movie .ps-hero-art { box-shadow: 0 0 0 2px rgba(255, 230, 190, .9), 0 24px 60px var(--ps-glow); }
+/* series: night blue with a teal glow, like a screen in a dark room */
+.sh-series { --ps-accent: #6EE7D2; --ps-glow: rgba(80, 220, 200, .4); --ps-text-2: #A8C4D8; --ps-glass: rgba(200, 240, 255, .07); --ps-line: rgba(180, 230, 255, .16);
+  --sym-tri: #FF7A93; --sym-sq: #FFD166; --sym-ci: #9FB4FF; --sym-x: #FFD166; }
+.sh-series .ps-bg { background: radial-gradient(900px 520px at 15% -10%, rgba(60, 200, 190, .25), transparent 60%), radial-gradient(700px 500px at 100% 90%, rgba(90, 80, 220, .22), transparent 60%), linear-gradient(165deg, #06172A, #050B16 55%, #0B0F26); }
+.sh-series .ps-btn.primary { background: #6EE7D2; border-color: #6EE7D2; color: #04201D; }
+.sh-series .ps-tile:hover, .sh-series .ps-tile[aria-current="true"] { box-shadow: 0 0 0 3px #6EE7D2, 0 14px 40px var(--ps-glow); }
+.sh-series .ps-tab[aria-selected="true"]::after { background: #6EE7D2; box-shadow: 0 0 12px #6EE7D2; }
+/* books: a masterwork illustration as the backdrop */
+.sh-book { --ps-accent: #F0D58C; --ps-glow: rgba(240, 213, 140, .4); --ps-text-2: #D9C9A6; --ps-glass: rgba(255, 240, 210, .08); --ps-line: rgba(255, 235, 200, .2);
+  --sym-tri: #FF8FA3; --sym-sq: #F0D58C; --sym-ci: #B7A6F0; --sym-x: #F0D58C; }
+.sh-book .ps-bg { background: var(--tone, #120C08); }
+.sh-art { position: absolute; z-index: -1; inset: 0 0 auto 0; height: 620px; background-size: cover; background-position: var(--art-pos, center 30%);
+  -webkit-mask-image: linear-gradient(#000 30%, transparent 96%); mask-image: linear-gradient(#000 30%, transparent 96%); }
+.sh-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .04) 28%, rgba(0, 0, 0, .45) 78%); }
+.sh-art.inverted { filter: invert(.93) sepia(.55) saturate(1.3) hue-rotate(-8deg) brightness(.9); }
+.sh-book .ps-hero-bg { display: none; }
+.sh-book .ps-btn.primary { background: #F0D58C; border-color: #F0D58C; color: #2A1C08; }
+.sh-book .ps-tile:hover, .sh-book .ps-tile[aria-current="true"] { box-shadow: 0 0 0 3px #F0D58C, 0 14px 40px var(--ps-glow); }
+.sh-book .ps-tab[aria-selected="true"]::after { background: #F0D58C; box-shadow: 0 0 12px #F0D58C; }
+.art-pick { display: flex; gap: 12px; margin: 20px 0 0; overflow-x: auto; scrollbar-width: none; padding: 4px 2px; }
+.art-pick::-webkit-scrollbar { display: none; }
+.art-opt { flex: none; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 92px; padding: 0; border: 0; background: none; color: var(--ps-text-2); font-size: 12px; line-height: 1.25; text-align: center; }
+.art-opt span.th { width: 92px; height: 62px; border-radius: 12px; background-size: cover; background-position: center; box-shadow: 0 0 0 1px var(--ps-line); transition: box-shadow .2s, transform .2s; }
+.art-opt:hover span.th { transform: translateY(-2px); }
+.art-opt[aria-checked="true"] { color: #fff; font-weight: 700; }
+.art-opt[aria-checked="true"] span.th { box-shadow: 0 0 0 2px #F0D58C, 0 8px 24px rgba(240, 213, 140, .35); }
+.art-credit { margin: 8px 0 0; font-size: 11px; color: var(--ps-text-2); }
+.art-credit a { color: inherit; }
+
 /* ============ sheet (add / edit) ============ */
 .sheet {
   --s-bg: #fff; --s-text: var(--ink); --s-text-2: var(--ink-2); --s-line: var(--line); --s-input: #FAF7FF; --s-accent: var(--k, var(--series)); --s-on-accent: #fff;
@@ -555,14 +602,14 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.6; }
 .deco-crown { display: block; width: 78%; max-width: 380px; margin: 0 auto -6px; }
 .sign { position: relative; margin: 0 auto; padding: 14px 18px 12px; border-radius: 10px; background: linear-gradient(180deg, #F6E7C8, #E7CFA1);
   box-shadow: 0 0 0 4px #8E1B26, 0 0 0 7px #E9B44C, 0 14px 30px rgba(0, 0, 0, .55), 0 0 40px rgba(255, 190, 90, .25); }
-.sign h1 { margin: 0; font-family: "Limelight", "Frank Ruhl Libre", serif; font-weight: 400; font-size: clamp(30px, 9vw, 54px); line-height: 1; letter-spacing: .04em; color: #B3172D;
+.sign h1 { margin: 0; font-family: var(--f-body); font-weight: 400; font-size: clamp(30px, 9vw, 54px); line-height: 1; letter-spacing: .04em; color: #B3172D;
   text-shadow: 0 0 1px #6E0A17, 0 0 14px rgba(255, 90, 90, .35); direction: ltr; }
 .bulbs { position: absolute; inset: 5px; pointer-events: none; border-radius: 7px;
   background: radial-gradient(circle, #FFF6D2 0 2.2px, rgba(255, 200, 90, .45) 3.3px, transparent 4.6px) 0 0 / 16px 16px;
   -webkit-mask: linear-gradient(#000 0 0) top / 100% 9px no-repeat, linear-gradient(#000 0 0) bottom / 100% 9px no-repeat, linear-gradient(#000 0 0) left / 9px 100% no-repeat, linear-gradient(#000 0 0) right / 9px 100% no-repeat;
   mask: linear-gradient(#000 0 0) top / 100% 9px no-repeat, linear-gradient(#000 0 0) bottom / 100% 9px no-repeat, linear-gradient(#000 0 0) left / 9px 100% no-repeat, linear-gradient(#000 0 0) right / 9px 100% no-repeat; }
 .letterboard { position: relative; margin: 14px -6px 0; padding: 16px 18px 14px; border-radius: 6px; background: linear-gradient(180deg, #FFFDF4, #F1E9D2); color: #121212;
-  box-shadow: 0 0 0 5px #2B1A10, 0 0 0 8px #E9B44C, 0 0 50px rgba(255, 236, 190, .35), 0 16px 34px rgba(0, 0, 0, .55); font-family: "Oswald", var(--f-body); }
+  box-shadow: 0 0 0 5px #2B1A10, 0 0 0 8px #E9B44C, 0 0 50px rgba(255, 236, 190, .35), 0 16px 34px rgba(0, 0, 0, .55); font-family: var(--f-body); }
 .letterboard .lb-line { display: block; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; line-height: 1.15; }
 .letterboard .lb-small { font-size: 12px; letter-spacing: .4em; color: #8E1B26; }
 .letterboard .lb-title { margin: 6px 0 10px; font-size: clamp(18px, 5.4vw, 30px); direction: ltr; overflow-wrap: anywhere; }
@@ -581,7 +628,7 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.6; }
 .ticket[aria-selected="true"] { background: linear-gradient(180deg, #C42A3C, #8E1726); color: #FFF1D8; }
 .cine .toolbar .select, .cine .tool-btn { background-color: rgba(255, 255, 255, .06); color: inherit; border-color: rgba(242, 179, 61, .4); }
 .cine .tool-btn.hot { background: #F2B33D; color: #3A0D12; }
-.cine .tier-h { font-family: "Limelight", var(--f-book); font-weight: 400; font-size: 22px; color: #FFD889; letter-spacing: .02em; }
+.cine .tier-h { font-family: var(--f-body); font-weight: 400; font-size: 22px; color: #FFD889; letter-spacing: .02em; }
 .cine .tier-h .cnt { color: #D6B98A; font-family: var(--f-body); }
 .cine .pcard .cv { border-radius: 3px; box-shadow: 0 0 0 3px #1E120A, 0 0 0 5px #C8902F, 0 0 0 6px #1E120A, 0 14px 28px rgba(0, 0, 0, .65); }
 .cine .pcard:hover .cv { box-shadow: 0 0 0 3px #1E120A, 0 0 0 5px #FFD889, 0 0 0 6px #1E120A, 0 0 30px rgba(255, 216, 137, .5); }
@@ -611,8 +658,8 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.6; }
 .crt-in { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px; }
 .crt-in .cv { width: 66px; aspect-ratio: 2 / 3; flex: none; border-radius: 6px; box-shadow: 0 6px 16px rgba(0, 0, 0, .6); }
 .crt-text { min-width: 0; color: #F4F1E6; text-shadow: 0 0 8px rgba(255, 255, 255, .25); }
-.crt-text small { display: inline-block; padding: 1px 8px; border-radius: 4px; background: #E63946; color: #fff; font-family: "Righteous", var(--f-head); font-size: 11px; letter-spacing: .12em; }
-.crt-text b { display: block; margin: 6px 0 8px; font-family: "Righteous", var(--f-head); font-weight: 400; font-size: clamp(17px, 4.8vw, 24px); line-height: 1.1; }
+.crt-text small { display: inline-block; padding: 1px 8px; border-radius: 4px; background: #E63946; color: #fff; font-family: var(--f-head); font-size: 11px; letter-spacing: .12em; }
+.crt-text b { display: block; margin: 6px 0 8px; font-family: var(--f-head); font-weight: 400; font-size: clamp(17px, 4.8vw, 24px); line-height: 1.1; }
 .crt-text .reel-btn { background: #F4E9D8; color: #2B2118; min-height: 34px; padding: 0 12px; font-size: 12px; white-space: nowrap; }
 .crt::after { content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
   background: radial-gradient(ellipse 80% 70% at 30% 20%, rgba(255, 255, 255, .16), transparent 45%), repeating-linear-gradient(0deg, rgba(255, 255, 255, .04) 0 1px, transparent 1px 3px); box-shadow: inset 0 0 40px rgba(0, 0, 0, .7); }
@@ -624,25 +671,25 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.6; }
 .knob::after { content: ''; position: absolute; top: 6px; left: 50%; width: 4px; height: 16px; margin-left: -2px; border-radius: 2px; background: #3E2512; }
 .knob.small { width: 40px; height: 40px; }
 .knob.small::after { height: 11px; top: 4px; }
-.knob-lbl { margin-top: -8px; font-family: "Righteous", var(--f-head); font-size: 10px; letter-spacing: .12em; color: #F4E9D8; }
+.knob-lbl { margin-top: -8px; font-family: var(--f-head); font-size: 10px; letter-spacing: .12em; color: #F4E9D8; }
 .grille { width: 56px; height: 64px; border-radius: 8px; background: repeating-linear-gradient(0deg, #3E2512 0 3px, #A57C52 3px 6px); box-shadow: inset 0 0 0 2px #3E2512; }
-.brand { font-family: "Righteous", var(--f-head); font-size: 12px; color: #F4E9D8; letter-spacing: .1em; }
+.brand { font-family: var(--f-head); font-size: 12px; color: #F4E9D8; letter-spacing: .1em; }
 .legs { display: block; width: 76%; height: 26px; margin: -2px auto 0; }
 .buttons { display: flex; justify-content: center; gap: 8px; margin: 18px 0 0; flex-wrap: wrap; }
 .tvbtn { min-height: 44px; padding: 0 14px; border-radius: 10px; border: 2px solid #2B2118; background: #F4E9D8; color: #2B2118; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 0 #2B2118; transition: transform .1s, box-shadow .1s; }
-.tvbtn .num { font-family: "Righteous", var(--f-head); color: #E76F51; font-size: 16px; }
+.tvbtn .num { font-family: var(--f-head); color: #E76F51; font-size: 16px; }
 .tvbtn .n { font-size: 12px; opacity: .65; }
 .tvbtn[aria-selected="true"] { background: #2A9D8F; color: #fff; transform: translateY(3px); box-shadow: 0 1px 0 #2B2118; }
 .tvbtn[aria-selected="true"] .num { color: #FFE8A3; }
 .guide { position: relative; margin: 22px calc(var(--gutter) * -1) 0; padding: 18px var(--gutter) 30px; background: #F4E9D8; border-top: 6px solid #2B2118; box-shadow: 0 -6px 0 #E76F51 inset; }
 .guide-mast { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; border-bottom: 3px double #2B2118; padding-bottom: 8px; }
-.guide-mast b { font-family: "Righteous", var(--f-head); font-weight: 400; font-size: 28px; color: #C1121F; letter-spacing: .04em; direction: ltr; }
-.guide-mast span { font-family: "Oswald", var(--f-body); font-size: 13px; letter-spacing: .12em; color: #6B5A48; }
+.guide-mast b { font-family: var(--f-head); font-weight: 400; font-size: 28px; color: #C1121F; letter-spacing: .04em; direction: ltr; }
+.guide-mast span { font-family: var(--f-body); font-size: 13px; letter-spacing: .12em; color: #6B5A48; }
 .tv .toolbar .select, .tv .tool-btn { background-color: #FFF8EC; color: #2B2118; border-color: #2B2118; border-width: 2px; }
 .tv .tool-btn.hot { background: #E76F51; color: #fff; }
-.tv .tier-h { font-family: "Righteous", var(--f-head); font-weight: 400; color: #2B2118; }
+.tv .tier-h { font-family: var(--f-head); font-weight: 400; color: #2B2118; }
 .tv .tier-h .cnt, .tv .pc-sub, .tv .credit { color: #6B5A48; }
-.tv .pc-title { color: #2B2118; font-family: "Oswald", var(--f-body); font-weight: 700; letter-spacing: .01em; }
+.tv .pc-title { color: #2B2118; font-family: var(--f-body); font-weight: 700; letter-spacing: .01em; }
 .tv .pcard .cv { border-radius: 14px / 12px; box-shadow: 0 0 0 3px #2B2118, 0 8px 0 #2B2118; }
 .tv .pcard:hover .cv { box-shadow: 0 0 0 3px #E76F51, 0 8px 0 #2B2118; }
 .tv .unrated-cta { background: #FFE8A3; border: 2px solid #2B2118; }
@@ -653,6 +700,7 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.6; }
 .wheel-dlg { width: 100%; height: 100%; max-width: 100%; max-height: 100%; margin: 0; padding: 0; border: 0; background: #150F22; color: #F4EEFF; overflow: hidden; }
 .wheel-dlg:not([open]) { display: none; }
 .wh-wrap { display: flex; flex-direction: column; height: 100%; overflow-y: auto; padding: calc(12px + var(--safe-t)) 16px calc(16px + var(--safe-b)); background: radial-gradient(ellipse at 50% 30%, #2B1E47, #120C1E 70%); }
+.wh-wrap > * { flex-shrink: 0; }
 .wh-top { display: flex; align-items: center; gap: 10px; }
 .wh-top h2 { flex: 1; margin: 0; font-family: var(--f-head); font-size: 24px; }
 .wh-top .x { width: var(--tap); height: var(--tap); border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); background: rgba(255, 255, 255, .08); color: #fff; display: grid; place-items: center; }
@@ -677,8 +725,12 @@ textarea.inp { min-height: 180px; resize: vertical; line-height: 1.6; }
 .wh-spin:disabled { opacity: .5; }
 .wh-opt { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0 0; font-size: 14px; color: #D9CFF5; }
 .wh-opt input { width: 20px; height: 20px; accent-color: #FFC93C; }
-.wh-result { margin: 16px auto 0; max-width: 460px; display: flex; gap: 14px; padding: 14px; border-radius: 20px; background: #F8F4FF; color: #2B1F3A; box-shadow: 0 20px 50px rgba(0, 0, 0, .45); }
-.wh-result .cv { width: 96px; flex: none; aspect-ratio: 2 / 3; border-radius: 10px; }
+#wh-result:empty { display: none; }
+#wh-result { position: fixed; z-index: 10; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(12, 8, 22, .62); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.wh-result { position: relative; width: min(100%, 460px); max-height: 80dvh; overflow-y: auto; flex-wrap: wrap; display: flex; gap: 14px; padding: 14px; border-radius: 20px; background: #F8F4FF; color: #2B1F3A; box-shadow: 0 20px 50px rgba(0, 0, 0, .45); }
+.wh-result .cv { width: 110px; flex: none; aspect-ratio: 2 / 3; border-radius: 10px; }
+.wh-result .wh-x { position: absolute; top: 8px; left: 8px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #EDE6FA; color: #2B1F3A; display: grid; place-items: center; }
+.wh-stage { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .wh-result h3 { margin: 0; font-family: var(--f-head); font-size: 21px; line-height: 1.15; }
 .wh-result p { margin: 4px 0 8px; font-size: 13px; color: #5D4C78; max-height: 7.5em; overflow: hidden; }
 .wh-result .btns { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -2067,7 +2119,7 @@ function renderHome() {
 /* ======================================================
    Shared bits for category pages
    ====================================================== */
-const ui = { sort: {}, focusGame: null, cols: 0 };
+const ui = { sort: {}, focus: {}, cols: 0 };
 const sortOf = kind => ui.sort[kind] || 'rating';
 function statusLabel(kind, s) { const k = KINDS[kind]; return { want: k.want, inProgress: k.doing, done: k.done, dropped: 'עזבתי' }[s]; }
 function countsOf(all) { return Object.fromEntries(STATUSES.map(s => [s, all.filter(i => i.status === s).length])); }
@@ -2487,75 +2539,98 @@ function renderBooks(status) {
 /* ======================================================
    Games — PS5-style library
    ====================================================== */
-function renderGames(status) {
-  const kind = 'game';
+const SHOW = {
+  game:   { cls: '', title: 'משחקים', fx: 'ps', empty: 'אין כאן משחקים עדיין.', dropped: 'עוד לא עזבת אף משחק באמצע.', credit: 'תמונות: <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>' },
+  movie:  { cls: 'sh-movie', eyebrow: "ADDIE'S CINEMA", title: 'סרטים', fx: 'sunlit', empty: 'אין כאן סרטים עדיין.', dropped: 'לא עזבת אף סרט באמצע.', credit: 'פוסטרים: <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a>' },
+  series: { cls: 'sh-series', eyebrow: 'ADDIE TV', title: 'סדרות', fx: null, empty: 'אין כאן סדרות עדיין.', dropped: 'לא עזבת אף סדרה באמצע.', credit: 'פוסטרים: <a href="https://www.tvmaze.com" target="_blank" rel="noopener">TVmaze</a>' },
+  book:   { cls: 'sh-book', eyebrow: 'LIBRARY', title: 'הספרים שלי', fx: 'motes', empty: 'המדף הזה עוד ריק.', dropped: 'לא עזבת אף ספר באמצע.', credit: 'כריכות: <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>' },
+};
+// Public-domain illustrations (Wikimedia Commons) for the books page.
+const BOOK_ART = [
+  { key: 'bookworm', label: 'תולעת הספרים', by: 'קרל שפיצווג, 1850 בערך', file: 'art/tale-bookworm.jpg', pos: 'center 18%', tone: '#1A120A', src: 'https://commons.wikimedia.org/wiki/File:The_Bookworm_-_Grohmann_Museum.jpg' },
+  { key: 'forest', label: 'יער האגדות', by: 'ג׳ון באואר, 1913', file: 'art/tale-forest.jpg', pos: 'center 40%', filter: 'brightness(1.75) saturate(1.15)', tone: '#11120E', src: 'https://commons.wikimedia.org/wiki/File:John_Bauer_-_Princess_Tuvstarr_gazing_down_into_the_dark_waters_of_the_forest_tarn._-_Google_Art_Project.jpg' },
+  { key: 'nights', label: 'אלף לילה ולילה', by: 'אדמונד דולאק, 1907', file: 'art/tale-nights.jpg', pos: 'center 55%', filter: 'brightness(1.1) saturate(1.2) contrast(1.05)', tone: '#151220', src: 'https://commons.wikimedia.org/wiki/File:Illustration_by_Edmund_Dulac_from_One_Thousand_and_One_Nights_03.jpg' },
+  { key: 'clarke', label: 'אגדות פרו', by: 'הארי קלארק, 1922', file: 'art/tale-clarke.png', pos: 'center 30%', tone: '#0F0D0A', invert: true, src: 'https://commons.wikimedia.org/wiki/File:Page_28_illustration_from_Fairy_tales_of_Charles_Perrault_(Clarke,_1922).png' },
+];
+const bookArt = () => BOOK_ART.find(a => a.key === state.settings.bookArt) || BOOK_ART[0];
+const focusOf = kind => (ui.focus ||= {})[kind];
+
+function renderShowcase(kind, status) {
+  const cfg = SHOW[kind], k = KINDS[kind];
   const all = itemsOf(kind);
   const counts = countsOf(all);
   const items = all.filter(i => i.status === status);
   const unrated = all.filter(isUnrated).length;
   const groups = shelfGroups(kind, items, status, sortOf(kind));
   const ordered = groups.flatMap(g => g.items);
-  const focus = ordered.find(i => i.id === ui.focusGame) || ordered[0];
-  ui.focusGame = focus?.id;
+  const focus = ordered.find(i => i.id === focusOf(kind)) || ordered[0];
+  ui.focus[kind] = focus?.id;
   const showSym = sortOf(kind) === 'title' && status === 'done';
+  const art = kind === 'book' ? bookArt() : null;
 
   const tile = it => {
     const t = tierOf(kind, it.tier);
-    return `<button class="ps-tile${coverSrc(it) ? '' : ' no-img'}" data-action="focus-game" data-id="${esc(it.id)}" aria-current="${it.id === ui.focusGame}" aria-label="${esc(it.title)}${t ? ', ' + t.label : ''}">
+    return `<button class="ps-tile${coverSrc(it) ? '' : ' no-img'}" data-action="focus" data-kind="${kind}" data-id="${esc(it.id)}" aria-current="${it.id === focus?.id}" aria-label="${esc(it.title)}${t ? ', ' + t.label : ''}">
       ${showSym && t ? `<span class="sym t-${t.key}" aria-hidden="true">${t.icon}</span>` : ''}
       ${coverBox(it)}
       <span class="ps-name"><bdi>${esc(it.title)}</bdi></span>
     </button>`;
   };
   const body = !items.length
-    ? `<div class="ps-empty"><p>${status === 'dropped' ? 'עוד לא עזבת אף משחק באמצע.' : 'אין כאן משחקים עדיין.'}</p>
-        ${status === 'dropped' ? '' : `<div class="ps-actions" style="justify-content:center"><button class="ps-btn primary" data-action="add" data-status="${status}">${IC.plus} משחק</button><button class="ps-btn" data-action="bulk" data-kind="game" data-status="${status}">${IC.list} הדבקת רשימה</button></div>`}</div>`
+    ? `<div class="ps-empty"><p>${status === 'dropped' ? cfg.dropped : cfg.empty}</p>
+        ${status === 'dropped' ? '' : `<div class="ps-actions" style="justify-content:center"><button class="ps-btn primary" data-action="add" data-status="${status}">${IC.plus} ${k.one}</button><button class="ps-btn" data-action="bulk" data-kind="${kind}" data-status="${status}">${IC.list} הדבקת רשימה</button></div>`}</div>`
     : groups.map(g => `<section class="ps-sec">
         ${g.tier ? `<h2><span class="sym t-${g.tier.key}" aria-hidden="true">${g.tier.icon}</span>${g.tier.label} <span class="cnt">${g.items.length}</span></h2>` : ''}
         <div class="ps-grid">${g.items.map(tile).join('')}</div>
       </section>`).join('');
 
-  return `<section class="ps" data-kind="${kind}">
+  return `<section class="ps ${cfg.cls}" data-kind="${kind}" ${art ? `style="--tone:${art.tone};--art-pos:${art.pos}"` : ''}>
     <div class="ps-bg" aria-hidden="true"></div>
+    ${art ? `<div class="sh-art${art.invert ? ' inverted' : ''}" aria-hidden="true" style="background-image:url('${art.file}')${art.filter ? `;filter:${art.filter}` : ''}"></div>` : ''}
     <canvas class="fx-canvas" aria-hidden="true"></canvas>
     <div class="ps-hero-bg" aria-hidden="true" ${focus && coverSrc(focus) ? `style="background-image:url('${esc(coverSrc(focus))}')"` : ''}></div>
     <div class="ps-top">
       ${homeBtn('ps-icon')}
-      <h1>משחקים</h1>
-      <button class="ps-icon" data-action="add" data-status="${status}" aria-label="הוספת משחק">${IC.plus}</button>
+      <h1>${cfg.eyebrow ? `<small class="ps-eyebrow" lang="en">${cfg.eyebrow}</small>` : ''}${cfg.title}</h1>
+      <button class="ps-icon" data-action="add" data-status="${status}" aria-label="הוספת ${k.one}">${IC.plus}</button>
     </div>
     <nav class="ps-tabs" role="tablist" aria-label="מצב">${tabsHTML(kind, status, counts, 'ps-tab')}</nav>
     ${focus ? heroHTML(focus) : ''}
     ${items.length ? `<div class="ps-toolbar">${sortSelect(kind, 'ps-select')}<span class="grow"></span>${toolButtons(kind, status, counts, unrated, 'ps-btn', 'primary')}</div>` : ''}
     ${body}
-    <p class="ps-credit">תמונות: <a href="https://en.wikipedia.org" target="_blank" rel="noopener">Wikipedia</a></p>
+    ${art ? `<div class="art-pick" role="radiogroup" aria-label="איור הרקע">${BOOK_ART.map(a => `<button class="art-opt" role="radio" aria-checked="${a.key === art.key}" data-action="book-art" data-art="${a.key}"><span class="th" style="background-image:url('${a.file}')${a.invert ? ';filter:invert(.93) sepia(.55)' : ''}"></span>${a.label}</button>`).join('')}</div>
+      <p class="art-credit">איור הרקע: ${art.label}, ${art.by}. נחלת הכלל, <a href="${art.src}" target="_blank" rel="noopener">ויקישיתוף</a></p>` : ''}
+    <p class="ps-credit">${cfg.credit}</p>
   </section>`;
 }
 function heroHTML(it) {
-  const t = tierOf('game', it.tier);
+  const kind = it.kind, k = KINDS[kind];
+  const t = tierOf(kind, it.tier);
   const quick = it.status === 'want' || it.status === 'inProgress';
+  const sub = [it.year, it.creator].filter(Boolean).join(' · ');
   return `<div class="ps-hero">
     ${coverBox(it, 'ps-hero-art')}
     <div class="ps-hero-text">
-      <span class="ps-chip">${t ? `<span class="sym t-${t.key}" aria-hidden="true">${t.icon}</span>${t.label}` : `<span class="sym t-none" aria-hidden="true">✕</span>${statusLabel('game', it.status)}`}</span>
+      <span class="ps-chip">${t ? `<span class="sym t-${t.key}" aria-hidden="true">${t.icon}</span>${t.label}` : `<span class="sym t-none" aria-hidden="true">●</span>${statusLabel(kind, it.status)}`}</span>
       <h2 class="ps-hero-title"><bdi>${esc(it.title)}</bdi></h2>
+      ${kind !== 'game' && sub ? `<p class="ps-hero-note"><bdi>${esc(sub)}</bdi></p>` : ''}
       ${it.note ? `<p class="ps-hero-note">${esc(it.note)}</p>` : ''}
       <div class="ps-actions">
-        ${quick ? `<button class="ps-btn primary" data-action="quick-done" data-id="${esc(it.id)}">✓ שיחקתי</button>` : ''}
-        <button class="ps-btn ${quick ? '' : 'primary'}" data-action="edit" data-id="${esc(it.id)}">פרטים ועריכה</button>
+        ${quick ? `<button class="ps-btn primary" data-action="quick-done" data-id="${esc(it.id)}">✓ ${k.done}</button>` : ''}
+        <button class="ps-btn ${quick ? '' : 'primary'}" data-action="edit" data-id="${esc(it.id)}">${kind === 'game' ? 'פרטים ועריכה' : 'פרטים'}</button>
       </div>
     </div>
   </div>`;
 }
-function focusGame(id) {
-  ui.focusGame = id;
+function focusItem(id) {
   const it = findItem(id);
+  if (it) (ui.focus ||= {})[it.kind] = id;
   const hero = $('.ps-hero');
   if (!it || !hero) return;
   $$('.ps-tile').forEach(t => t.setAttribute('aria-current', t.dataset.id === id));
   hero.outerHTML = heroHTML(it);
   const src = coverSrc(it);
-  $('.ps-hero-bg').style.backgroundImage = src ? `url("${src.replace(/"/g, '%22')}")` : 'none';
+  if ($('.ps-hero-bg')) $('.ps-hero-bg').style.backgroundImage = src ? `url("${src.replace(/"/g, '%22')}")` : 'none';
   window.scrollTo({ top: 0, behavior: reducedMotion() ? 'auto' : 'smooth' });
   if (window.gsap && !reducedMotion()) {
     gsap.fromTo('.ps-hero-art', { opacity: 0, scale: .85, rotateY: -25 }, { opacity: 1, scale: 1, rotateY: 0, duration: .55, ease: 'power3.out' });
@@ -2661,14 +2736,16 @@ function startFx(canvas, mood) {
 let gctx = null;
 function enhance(kind) {
   const canvas = $('.fx-canvas');
-  if (canvas && (kind === 'game' || bookTheme().fx !== 'none')) stopFx = startFx(canvas, kind === 'game' ? 'ps' : bookTheme().fx);
+  if (canvas && SHOW[kind]?.fx) stopFx = startFx(canvas, SHOW[kind].fx);
   if (!window.gsap || reducedMotion()) return;
   if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
   gctx = gsap.context(() => {
-    if (kind === 'game') {
+    if (SHOW[kind]) {
       gsap.from('.ps-hero-art', { opacity: 0, y: 30, scale: .9, duration: .6, ease: 'power3.out' });
       gsap.from('.ps-hero-text > *', { opacity: 0, x: 40, duration: .5, stagger: .07, ease: 'power3.out' });
-      gsap.from('.ps-tile', { opacity: 0, y: 24, duration: .45, stagger: .02, ease: 'power2.out', clearProps: 'transform,opacity' });
+      // tiles in view rise in; the rest fade in as they scroll into view
+      $('.ps-grid').forEach(grid => gsap.from(grid.children, { opacity: 0, y: 24, duration: .45, stagger: { amount: Math.min(.8, grid.children.length * .02) }, ease: 'power2.out', clearProps: 'transform,opacity',
+        scrollTrigger: window.ScrollTrigger ? { trigger: grid, start: 'top 95%', once: true } : undefined }));
       if (window.VanillaTilt && matchMedia('(hover: hover) and (pointer: fine)').matches) VanillaTilt.init($$('.ps-tile'), { max: 12, speed: 400, glare: true, 'max-glare': .25, scale: 1.04 });
     }
     if (kind === 'book') {
@@ -3035,7 +3112,7 @@ function openItemSheet(kind, item, status = 'done') {
     else state.items = state.items.map(i => i.id === d.id ? d : i);
     if (!(await save())) { state.items = before; btn.disabled = false; btn.textContent = 'שמירה'; return; }
     closeSheet();
-    if (kind === 'game') ui.focusGame = d.id;
+    if (kind === 'game') (ui.focus ||= {}).game = d.id;
     const t = tierOf(kind, d.tier);
     const dest = `#/${kind}/${d.status}`;
     if (location.hash !== dest) location.hash = dest; else route();
@@ -3532,7 +3609,7 @@ function wheelSVG(pool) {
     <circle cx="${C}" cy="${CY}" r="30" fill="url(#wh-metal)" stroke="#5D6270" stroke-width="2"/>
     <circle cx="${C}" cy="${CY}" r="21" fill="url(#wh-gold)"/>
     <path d="M${C} ${CY - 12}l3.5 7.5 8.2.9-6.1 5.6 1.7 8.1-7.3-4.1-7.3 4.1 1.7-8.1-6.1-5.6 8.2-.9z" fill="#fff"/>
-    <g class="wh-pointer"><path d="M200 52L184 12Q200 0 216 12Z" fill="url(#wh-gold)" stroke="#7A5418" stroke-width="2"/><circle cx="200" cy="14" r="5" fill="#B3172D"/></g>
+    <g class="wh-pointer" data-c="200 14"><path d="M200 52L184 12Q200 0 216 12Z" fill="url(#wh-gold)" stroke="#7A5418" stroke-width="2"/><circle cx="200" cy="14" r="5" fill="#B3172D"/></g>
   </svg>`;
 }
 
@@ -3610,7 +3687,7 @@ function renderWheel(result) {
     <div class="wh-count" aria-live="polite">מסתובב על ${pool.length} מתוך ${base.length} פריטים${notes.length ? ` (${notes.join('; ')})` : ''}${notes.length ? '<button data-wh="clear">נקה סינון</button>' : ''}</div>
     ${pool.length ? `<div class="wh-stage">${wheelSVG(pool)}</div>
       <div class="wh-ticker" id="wh-ticker">${pool.length > 24 ? `${pool.length} פריטים על הגלגל` : ''}</div>
-      <button class="wh-spin" data-wh="spin">סובבי!</button>
+      <button class="wh-spin" data-wh="spin">סובבי!</button><p class="wh-label" style="text-align:center;margin-top:6px">אפשר גם פשוט ללחוץ על הגלגל</p>
       <label class="wh-opt"><input type="checkbox" data-wh="exclude" ${wheelState.excludeNext ? 'checked' : ''}>תוציאי את התוצאה מהסיבוב הבא</label>`
       : '<p style="text-align:center;margin-top:30px">אין פריטים ברשימה הזו. אפשר לבחור רשימה אחרת או לנקות את הסינון.</p>'}
     <div id="wh-result"></div>
@@ -3620,14 +3697,13 @@ function renderWheel(result) {
 }
 function showWheelResult(it, animate = true) {
   const box = $('#wh-result', wheelDlg);
-  box.innerHTML = `<div class="wh-result" data-kind="${it.kind}">${coverBox(it)}<div style="min-width:0">
+  box.innerHTML = `<div class="wh-result" data-kind="${it.kind}" role="dialog" aria-label="התוצאה"><button class="wh-x" data-wh="nottoday" aria-label="סגירה">${IC.x}</button>${coverBox(it)}<div style="min-width:0;flex:1">
     <h3><bdi>${esc(it.title)}</bdi></h3>
     <p id="wh-sum">${esc([it.year, it.creator, (it.genres || []).join(', ')].filter(Boolean).join(' · '))}${it.summary ? '<br>' + esc(it.summary) : ''}</p>
     <div class="btns"><button class="go" data-wh="start">${it.kind === 'book' ? 'מתחילה לקרוא' : it.kind === 'game' ? 'מתחילה לשחק' : it.kind === 'movie' ? 'רואה עכשיו!' : 'מתחילה'}</button><button data-wh="spin">עוד סיבוב</button><button data-wh="nottoday">לא היום</button></div>
   </div></div>`;
   box.dataset.id = it.id;
   if (animate && window.gsap && !reducedMotion()) gsap.from(box.firstElementChild, { y: 20, opacity: 0, duration: .35 });
-  box.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'nearest' });
   if (!it.summary) fetchSummary(it).then(s => { const p = $('#wh-sum', wheelDlg); if (s && p && box.dataset.id === it.id) p.innerHTML += '<br>' + esc(s); });
 }
 let spinning = false;
@@ -3668,7 +3744,7 @@ async function spinWheel() {
         // the pointer flicks each time a slice edge passes under it
         const deg = ((gsap.getProperty(rot, 'rotation') % 360) + 360) % 360;
         const under = Math.floor(((360 - deg) % 360) / a);
-        if (under !== lastSlice && n <= 60) { lastSlice = under; gsap.fromTo(pointer, { rotation: -16 }, { rotation: 0, duration: .18, ease: 'back.out(3)', overwrite: true }); }
+        if (under !== lastSlice && n <= 60) { lastSlice = under; gsap.fromTo(pointer, { rotation: -16, svgOrigin: pointer.dataset.c }, { rotation: 0, svgOrigin: pointer.dataset.c, duration: .18, ease: 'back.out(3)', overwrite: true }); }
       },
     })), sleep(dur * 1000 + 500)]);
   } else rot.style.transform = `rotate(${target}deg)`;
@@ -3696,6 +3772,8 @@ function celebrate(stage) {
   }
 }
 wheelDlg.addEventListener('click', async e => {
+  if (!spinning && e.target.closest('.wh-stage')) { if ($('.slice', wheelDlg).length !== wheelPool().length) { renderWheel(); ui.wheelRot = 0; } spinWheel(); return; }
+  if (e.target.id === 'wh-result') { $('#wh-result', wheelDlg).innerHTML = ''; return; }
   const b = e.target.closest('[data-wh],[data-wh-kind],[data-wh-src],[data-wh-genre]');
   if (!b || spinning) return;
   if (b.dataset.whKind) { wheelState.kind = b.dataset.whKind; wheelState.genres.clear(); return renderWheel(); }
@@ -3710,6 +3788,7 @@ wheelDlg.addEventListener('click', async e => {
     spinWheel();
   }
   if (a === 'nottoday') $('#wh-result', wheelDlg).innerHTML = '';
+  if (a === 'spin' && b.closest('.wh-result')) $('#wh-result', wheelDlg).innerHTML = '';
   if (a === 'start') {
     const it = findItem($('#wh-result', wheelDlg).dataset.id);
     if (!it) return;
@@ -3836,17 +3915,15 @@ function route() {
     const all = itemsOf(kind);
     status = all.some(i => i.status === 'done') ? 'done' : STATUSES.find(s => all.some(i => i.status === s)) || 'want';
   }
-  const dark = kind !== 'movie' || true ? (kind === 'game' || kind === 'movie' || (kind === 'book' && bookTheme().dark)) : false;
+  const dark = kind !== 'movie' || true ? true : false;
   const prevKind = ui.lastKind, prevStatus = ui.lastStatus;
   ui.lastKind = kind; ui.lastStatus = status;
   document.body.dataset.dark = dark ? '1' : '0';
   renderTabbar(kind);
-  app.innerHTML = kind === 'book' ? renderBooks(status) : kind === 'game' ? renderGames(status) : renderMedia(kind, status);
+  app.innerHTML = renderShowcase(kind, status);
   document.title = `${KINDS[kind].label} · המדף של עדי`;
-  setThemeColor({ game: '#060b19', book: bookTheme().color, movie: '#6E0E1C', series: '#E9B949' }[kind]);
-  if (kind === 'book' || kind === 'game') enhance(kind);
-  if (kind === 'movie' && prevKind !== 'movie' && !reducedMotion()) openCurtains();
-  if (kind === 'series' && prevKind === 'series' && prevStatus !== status && !reducedMotion()) tvStatic();
+  setThemeColor({ game: '#060b19', book: bookArt().tone, movie: '#140608', series: '#050B16' }[kind]);
+  enhance(kind);
 }
 
 document.addEventListener('click', async e => {
@@ -3867,12 +3944,14 @@ document.addEventListener('click', async e => {
   if (a === 'bulk') openBulkSheet(kind, el.dataset.status || 'done');
   if (a === 'swipe') openSwipe(kind);
   if (a === 'wheel') openWheel(kind);
-  if (a === 'edit') { const it = findItem(el.dataset.id); if (it) openDetail(it); }
+  if (a === 'edit') { const it = findItem(el.dataset.id); if (it) it.kind === 'game' ? openItemSheet('game', it) : openDetail(it); }
   if (a === 'quick-done') { const it = findItem(el.dataset.id); if (it) openQuickDone(it); }
-  if (a === 'focus-game') {
-    if (ui.focusGame === el.dataset.id) { const it = findItem(el.dataset.id); if (it) openItemSheet('game', it); }
-    else focusGame(el.dataset.id);
+  if (a === 'focus') {
+    const it = findItem(el.dataset.id);
+    if (it && focusOf(it.kind) === it.id) it.kind === 'game' ? openItemSheet('game', it) : openDetail(it);
+    else focusItem(el.dataset.id);
   }
+  if (a === 'book-art') { state.settings.bookArt = el.dataset.art; save(); const y = scrollY; route(); scrollTo(0, y); }
   if (a === 'book-theme') { state.settings.bookTheme = el.dataset.theme; save(); route(); $(`[data-theme="${el.dataset.theme}"]`)?.focus({ preventScroll: true }); }
   if (a === 'copy') {
     const n = itemsOf(kind).filter(i => i.status === 'done' && i.tier).length;
